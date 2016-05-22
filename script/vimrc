@@ -1,0 +1,304 @@
+"dein Scripts-----------------------------
+if &compatible
+  set nocompatible               " Be iMproved
+endif
+
+" Required:
+set runtimepath^=~/.vim/dein//repos/github.com/Shougo/dein.vim
+
+" Required:
+call dein#begin(expand('~/.vim/dein/'))
+
+" Let dein manage dein
+" Required:
+call dein#add('Shougo/dein.vim')
+
+" Add or remove your plugins here:
+" NERDtree
+call dein#add('scrooloose/nerdtree',
+	\ {'on_cmd': 'NERDTreeToggle'})
+
+" tasklist
+call dein#add('TaskList.vim')
+
+" unite
+call dein#add('Shougo/unite.vim')
+
+" vimwiki
+call dein#add('vimwiki/vimwiki')
+
+" airline
+call dein#add('vim-airline/vim-airline')
+
+" airline-theme
+call dein#add('vim-airline/vim-airline-themes')
+
+" Ag
+call dein#add('rking/ag.vim')
+
+" ultisnips
+call dein#add('SirVer/ultisnips')
+
+" vim-snippets
+call dein#add('honza/vim-snippets')
+
+" my own plugin
+call dein#local('~/.vim/bundle', {},
+    \ ['pt.vim'])
+
+call dein#local('~/.vim/bundle', {},
+    \ ['YouCompleteMe'])
+
+" 这两个东西，Windows只能自行手动安装了
+if !has('win32')
+	if system('uname') =~ "FreeBSD"
+		" vimproc，现在dein不支持build dictionary了，只能每个平台写一份vimrc，改build
+		call dein#add('Shougo/vimproc.vim', {
+			\ 'build': "gmake",
+			\ })
+	else
+		call dein#add('Shougo/vimproc.vim', {
+			\ 'build': "make",
+			\ })
+	endif
+endif
+
+" 以上是通用插件，下面的插件需要针对不同的文件类型
+" lua-support
+call dein#add('lua-support',
+	\ {'on_ft': ['lua']})
+
+" c-support
+call dein#add('vimscript/c-support',
+	\ {'on_ft': ['c', 'cpp']})
+
+" Required:
+call dein#end()
+
+" Required:
+filetype plugin indent on
+
+" If you want to install not installed plugins on startup.
+if dein#check_install()
+  call dein#install()
+endif
+
+"End dein Scripts-------------------------
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" UI setting
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+colo desert
+syntax enable
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" common setting
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" search result highlight
+set hlsearch
+" I need backspace
+set bs=2
+
+" tab width
+set tabstop=4
+set cindent shiftwidth=4
+set autoindent shiftwidth=4
+
+set smarttab
+
+" auto change CWD when open a new buffer
+autocmd BufRead * silent! cd %:p:h
+
+" If you prefer the Omni-Completion tip window to close when a selection is
+" made, these lines close it on movement in insert mode or when leaving
+" insert mode
+autocmd CursorMovedI * if pumvisible() == 0|pclose|endif
+autocmd InsertLeave * if pumvisible() == 0|pclose|endif
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" file encoding
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" set file encoding
+set enc=utf-8
+set fileencodings=utf-8,cp936,big5,euc-kr,euc-jp
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" taglist
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let Tlist_Inc_Winwidth = 0
+" 解决tasklist和vimwiki的冲突
+map <leader>v <Plug>TaskList
+" for vimwiki
+nmap <leader>tt <Plug>VimwikiToggleListItem
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" txt.vim
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"syntax highlight for txt.vim，不知道为什么pt.vim里面ftdetect不能用，只好放这里
+au BufRead,BufNewFile *.txt setlocal ft=txt
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" 切换路径，有的时候需要在指定路径下跑ag、unite什么的
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+function PtGoToBase()
+	let cur_path = expand("%:p")
+	if !exists("g:pt_base")
+		echom "You need set base first. Use <space>b to set base."
+		return
+	endif
+
+	echom "Set CWD to " . g:pt_base
+	chdir "" . g:pt_base
+endfunction
+
+function PtSetBase()
+	let g:pt_base = expand("%:p:h")
+	echom "Set new CWD to " . g:pt_base
+endfunction
+
+function PtShowBase()
+	if !exists("g:pt_base")
+		echom "You need set base first. Use <space>b to set base."
+		return
+	endif
+
+	echom "Current CWD : " . g:pt_base
+endfunction
+
+" 切换路径到当前的base下面
+nnoremap <space>c :call PtGoToBase() <CR>
+nnoremap <space>b :call PtSetBase() <CR>
+nnoremap <space>v :call PtShowBase() <CR>
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" unite
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" 文件搜索
+nnoremap <C-p> :Unite -start-insert file_rec/async<cr>
+" 文本grep
+nnoremap <space>/ :Unite -start-insert grep:.<cr>
+" yank history搜索
+let g:unite_source_history_yank_enable = 1
+nnoremap <space>y :Unite -start-insert history/yank<cr>
+" Buffer switching
+nnoremap <space>s :Unite -quick-match -start-insert buffer<cr>
+
+" Use ag for search
+if executable('ag')
+  " Use ag in unite grep source.
+  let g:unite_source_grep_command = 'ag'
+  let g:unite_source_grep_default_opts =
+  \ '-i --line-numbers --nocolor --nogroup --hidden --ignore ' .
+  \  '''.hg'' --ignore ''.svn'' --ignore ''.git'' --ignore ''.bzr'''
+  let g:unite_source_grep_recursive_opt = ''
+endif
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Ag.vim
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" 目前只有如下这些文件类型需要使用ag的file type功能
+let s:ft_map = {
+\ "c": "--cpp",
+\ "cpp": "--cpp",
+\ "java": "--java",
+\ "python": "--python",
+\ "lua": "--lua",
+\ }
+function PtGetFileType()
+	return get(s:ft_map, &ft, "")
+endfunction
+nnoremap <space>f :execute "Ag!" . PtGetFileType() " --nogroup " . expand("<cword>") <CR>
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" NERDtree
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+map <C-n> :NERDTreeToggle<CR>
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Airline
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+set laststatus=2
+if !exists('g:airline_symbols')
+  let g:airline_symbols = {}
+endif
+
+let g:airline_left_sep = ''
+let g:airline_left_alt_sep = ''
+let g:airline_right_sep = ''
+let g:airline_right_alt_sep = ''
+let g:airline_symbols.branch = ''
+let g:airline_symbols.readonly = ''
+let g:airline_symbols.linenr = ''
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" YouCompleteMe & UltiSnips
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Trigger configuration. Do not use <tab> if you use
+" https://github.com/Valloric/YouCompleteMe.
+let g:UltiSnipsExpandTrigger="<c-j>"
+let g:UltiSnipsJumpForwardTrigger="<c-b>"
+let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+
+" If you want :UltiSnipsEdit to split your window.
+let g:UltiSnipsEditSplit="vertical"
+nnoremap <leader>gl :YcmCompleter GoToDeclaration<CR>
+nnoremap <leader>gf :YcmCompleter GoToDefinition<CR>
+nnoremap <leader>gg :YcmCompleter GoToDefinitionElseDeclaration<CR>
+nnoremap <leader>gr :YcmCompleter GoToReferences<CR>
+nnoremap <leader>gc :pclose<CR>
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" 不同操作系统相关的配置
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+function PtCommonInit()
+	if !has("win32")
+		set backupdir=~/.vim/backup//
+		set directory=~/.vim/swap//
+		set undodir=~/.vim/undo//
+	else
+		exe "set backupdir=" . $HOME . "\\vimfiles\\backup\\"
+		exe "set directory=" . $HOME . "\\vimfiles\\swap\\"
+		exe "set undodir=" . $HOME . "\\vimfiles\\undo\\"
+
+		set t_Co=256
+	endif
+endfunction
+
+function PtMacInit()
+	call PtCommonInit()
+
+	" for copy and paste
+	nmap <F1> :set paste<CR>:r !pbpaste<CR>:set nopaste<CR>
+	imap <F1> <Esc>:set paste<CR>:r !pbpaste<CR>:set nopaste<CR>
+	nmap <F2> :.w !pbcopy<CR><CR>
+	vmap <F2> :w !pbcopy<CR><CR>
+endfunction
+
+function PtWinInit()
+	call PtCommonInit()
+endfunction
+
+function PtLinuxInit()
+	call PtCommonInit()
+endfunction
+
+function PtFreeBSDInit()
+	call PtCommonInit()
+
+	" lpc plugin
+	nmap <C-q> <ESC>:!lpc_compile %<CR>
+	nmap <C-k> <ESC>:!lpc_update %<CR>
+endfunction
+
+if has("win32")
+	call PtWinInit()
+else
+	let s:os_name = system("uname")
+	if s:os_name =~ "Linux"
+		call PtLinuxInit()
+	elseif s:os_name =~ "Darwino"
+		call PtMacInit()
+	elseif s:os_name =~ "FreeBSD"
+		call PtFreeBSDInit()
+	endif
+endif
