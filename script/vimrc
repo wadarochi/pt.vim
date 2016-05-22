@@ -49,6 +49,8 @@ call dein#local('~/.vim/bundle', {},
 call dein#local('~/.vim/bundle', {},
     \ ['YouCompleteMe'])
 
+call dein#add('rdnetto/YCM-Generator')
+
 " 这两个东西，Windows只能自行手动安装了
 if !has('win32')
 	if system('uname') =~ "FreeBSD"
