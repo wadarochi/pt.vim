@@ -42,6 +42,9 @@ call dein#add('SirVer/ultisnips')
 " vim-snippets
 call dein#add('honza/vim-snippets')
 
+" drawit
+call dein#add('vim-scripts/DrawIt')
+
 " my own plugin
 call dein#local('~/.vim/bundle', {},
     \ ['pt.vim'])
