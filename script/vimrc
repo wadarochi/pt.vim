@@ -218,6 +218,7 @@ nnoremap <space>f :execute "Ag!" . PtGetFileType() " --nogroup " . expand("<cwor
 " NERDtree
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 map <C-n> :NERDTreeToggle<CR>
+let NERDTreeChDirMode=2
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Airline
