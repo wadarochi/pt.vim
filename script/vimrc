@@ -18,6 +18,10 @@ call dein#add('Shougo/dein.vim')
 call dein#add('scrooloose/nerdtree',
 	\ {'on_cmd': 'NERDTreeToggle'})
 
+" Hexmode
+call dein#add('fidian/hexmode',
+	\ {'on_cmd': 'Hexmode'})
+
 " tasklist
 call dein#add('TaskList.vim')
 
@@ -44,6 +48,9 @@ call dein#add('honza/vim-snippets')
 
 " drawit
 call dein#add('vim-scripts/DrawIt')
+
+" vim-bracketed-paste
+call dein#add('ConradIrwin/vim-bracketed-paste')
 
 " my own plugin
 call dein#local('~/.vim/bundle', {},
