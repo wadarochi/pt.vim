@@ -25,6 +25,9 @@ call dein#add('fidian/hexmode',
 " tasklist
 call dein#add('TaskList.vim')
 
+" tagbar
+call dein#add('majutsushi/tagbar')
+
 " unite
 call dein#add('Shougo/unite.vim')
 
@@ -135,9 +138,9 @@ set enc=utf-8
 set fileencodings=utf-8,cp936,big5,euc-kr,euc-jp
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" taglist
+" tagbar
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let Tlist_Inc_Winwidth = 0
+nmap <leader>tb :TagbarToggle<CR>
 " 解决tasklist和vimwiki的冲突
 map <leader>v <Plug>TaskList
 " for vimwiki
