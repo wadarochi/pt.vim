@@ -23,7 +23,7 @@ call dein#add('fidian/hexmode',
 	\ {'on_cmd': 'Hexmode'})
 
 " tasklist
-call dein#add('TaskList.vim')
+call dein#add('vim-scripts/TaskList.vim')
 
 " tagbar
 call dein#add('majutsushi/tagbar')
@@ -62,6 +62,14 @@ call dein#local('~/.vim/bundle', {},
 call dein#local('~/.vim/bundle', {},
     \ ['YouCompleteMe'])
 
+" how to update YouCompleteMe:
+" cd  ~/.vim/bundle/YouCompleteMe
+" git clean -f
+" git pull
+" rm -r ~/.vim/bundle/YouCompleteMe/third_party/ycmd/third_party
+" git submodule update --recursive --init
+" ./install.py --clang-completer
+
 call dein#add('rdnetto/YCM-Generator')
 
 " 这两个东西，Windows只能自行手动安装了
@@ -80,7 +88,7 @@ endif
 
 " 以上是通用插件，下面的插件需要针对不同的文件类型
 " lua-support
-call dein#add('lua-support',
+call dein#add('vim-scripts/lua-support',
 	\ {'on_ft': ['lua']})
 
 " c-support
