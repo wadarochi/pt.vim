@@ -55,6 +55,9 @@ call dein#add('vim-scripts/DrawIt')
 " vim-bracketed-paste
 call dein#add('ConradIrwin/vim-bracketed-paste')
 
+" wakatime
+call dein#add('wakatime/vim-wakatime')
+
 " my own plugin
 call dein#local('~/.vim/bundle', {},
     \ ['pt.vim'])
