@@ -38,5 +38,4 @@ git config --global https.proxy 'socks5://127.0.0.1:8087'
 ~~~
 
 ## 当前存在的问题
- 1. FIXME: YouCompleteMe与Ctrl+N似乎有冲突，应该是配置的问题；
- 2. FIXME: vimproc在安装的时候似乎会报找不到so，看起来就是没有正确的make，但是事实上是装好了，在vim里面功能是正常的，可能是dein的问题。
+ 1. FIXME: vimproc在安装的时候似乎会报找不到so，看起来就是没有正确的make，但是事实上是装好了，在vim里面功能是正常的，可能是dein的问题。
