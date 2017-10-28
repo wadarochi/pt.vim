@@ -23,6 +23,8 @@
         setup_vim_freebsd.sh
 
  3. 自行安装YouCompleteMe到~/.vim/bundle/YouCompleteMe，这货在Windows和FreeBSD上比较麻烦，只好放弃对C-family的支持，只安装基本版，Linux和Mac平台安装都挺方便的。
+  * 2017-10-28更新，Windows版本可以从这里获取：https://www.zhihu.com/question/25437050/answer/95662340，韦一笑编译版本，不过启动较慢
+
  4. 启动vim，等待所有插件安装完毕
 
         vim
