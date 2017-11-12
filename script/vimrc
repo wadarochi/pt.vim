@@ -75,6 +75,8 @@ call dein#local('~/.vim/bundle', {},
 
 call dein#add('rdnetto/YCM-Generator')
 
+call dein#add('jremmen/vim-ripgrep')
+
 " 这两个东西，Windows只能自行手动安装了
 if !has('win32')
 	if system('uname') =~ "FreeBSD"
@@ -236,6 +238,12 @@ endfunction
 nnoremap <space>f :execute "Ag!" . PtGetFileType() " --nogroup " . expand("<cword>") <CR>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Rg.vim
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:rg_binary = "/usr/local/bin/rg"
+let g:rg_highlight = 1
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " NERDtree
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 map <C-n> :NERDTreeToggle<CR>
@@ -283,9 +291,9 @@ function PtCommonInit()
 		set directory=~/.vim/swap//
 		set undodir=~/.vim/undo//
 	else
-		exe "set backupdir=" . $HOME . "\\vimfiles\\backup\\"
-		exe "set directory=" . $HOME . "\\vimfiles\\swap\\"
-		exe "set undodir=" . $HOME . "\\vimfiles\\undo\\"
+		exe "set backupdir=" . $HOME . "\\.vim\\backup\\"
+		exe "set directory=" . $HOME . "\\.vim\\swap\\"
+		exe "set undodir=" . $HOME . "\\.vim\\undo\\"
 
 		set t_Co=256
 	endif
