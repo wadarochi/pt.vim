@@ -58,6 +58,9 @@ call dein#add('ConradIrwin/vim-bracketed-paste')
 " wakatime
 call dein#add('wakatime/vim-wakatime')
 
+" solarized
+call dein#add('altercation/vim-colors-solarized')
+
 " my own plugin
 call dein#local('~/.vim/bundle', {},
     \ ['pt.vim'])
@@ -116,7 +119,7 @@ endif
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " UI setting
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-colo desert
+colo solarized
 syntax enable
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
