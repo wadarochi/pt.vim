@@ -122,6 +122,21 @@ endif
 colo solarized
 syntax enable
 
+if has("mac") || has("macunix")
+    set guifont=Monaco\ for\ Powerline:h12
+elseif has("win32") || has("win64")
+    set guifont=Monaco\ for\ Powerline:h12:cANSI
+    set renderoptions=type:directx,renmode:5
+endif
+
+if has('gui_running')
+    set columns=160
+    set lines=70
+	set background=light
+else
+	set background=dark
+endif
+
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " common setting
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
