@@ -178,6 +178,23 @@ map <leader>v <Plug>TaskList
 nmap <leader>tt <Plug>VimwikiToggleListItem
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" tagbar
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+if !has("win32")
+	let g:vimwiki_list = [{'path': '~/vimwiki/',
+				\ 'path_html': '~/vimwiki_html/',
+				\ 'template_path': '~/vimwiki_html/template',
+				\ 'template_default': 'default',
+				\ 'template_ext': '.htm'}]
+else
+	let g:vimwiki_list = [{'path': $HOME . '\\vimwiki\\',
+				\ 'path_html': $HOME . '\\vimwiki_html\\',
+				\ 'template_path': $HOME . '\\vimwiki_html\\template',
+				\ 'template_default': 'default',
+				\ 'template_ext': '.htm'}]
+endif
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " txt.vim
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "syntax highlight for txt.vim，不知道为什么pt.vim里面ftdetect不能用，只好放这里
