@@ -61,6 +61,9 @@ call dein#add('wakatime/vim-wakatime')
 " solarized
 call dein#add('altercation/vim-colors-solarized')
 
+" vim-bookmarks plugin
+call dein#add('MattesGroeger/vim-bookmarks')
+
 " my own plugin
 call dein#local('~/.vim/bundle', {},
     \ ['pt.vim'])
@@ -245,6 +248,8 @@ let g:unite_source_history_yank_enable = 1
 nnoremap <space>y :Unite -start-insert history/yank<cr>
 " Buffer switching
 nnoremap <space>s :Unite -quick-match -start-insert buffer<cr>
+" bookmarks
+nnoremap <space>b :Unite vim_bookmarks<cr>
 
 " Use ag for search
 if executable('ag')
@@ -275,7 +280,7 @@ nnoremap <space>f :execute "Ag!" . PtGetFileType() " --nogroup " . expand("<cwor
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Rg.vim
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:rg_binary = "/usr/local/bin/rg"
+let g:rg_binary = "/usr/bin/rg"
 let g:rg_highlight = 1
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -318,6 +323,53 @@ nnoremap <leader>gf :YcmCompleter GoToDefinition<CR>
 nnoremap <leader>gg :YcmCompleter GoToDefinitionElseDeclaration<CR>
 nnoremap <leader>gr :YcmCompleter GoToReferences<CR>
 nnoremap <leader>gc :pclose<CR>
+
+let g:ycm_confirm_extra_conf=0
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" vim-bookmarks
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+highlight BookmarkSign ctermbg=NONE ctermfg=160
+highlight BookmarkLine ctermbg=194 ctermfg=NONE
+let g:bookmark_sign = '♥'
+let g:bookmark_highlight_lines = 1
+
+" 干掉默认的key bindings
+let g:bookmark_no_default_key_mappings = 1
+" 为每个buffer单独存放bookmarks
+let g:bookmark_manage_per_buffer = 1
+
+" 新的key bindings
+nmap <leader>mm <Plug>BookmarkToggle
+nmap <leader>mi <Plug>BookmarkAnnotate
+nmap <leader>ma <Plug>BookmarkShowAll
+nmap <leader>mn <Plug>BookmarkNext
+nmap <leader>mp <Plug>BookmarkPrev
+nmap <leader>mc <Plug>BookmarkClear
+nmap <leader>mx <Plug>BookmarkClearAll
+nmap <leader>mkk <Plug>BookmarkMoveUp
+nmap <leader>mjj <Plug>BookmarkMoveDown
+nmap <leader>mg <Plug>BookmarkMoveToLine
+
+" Unite Integration
+call unite#custom#profile('source/vim_bookmarks', 'context', {
+  \   'winheight': 13,
+  \   'direction': 'botright',
+  \   'start_insert': 0,
+  \   'keep_focus': 1,
+  \   'no_quit': 1,
+  \ })
+
+" 每个buffer存放bookmarks的地方，选取完整路径，然后将linesep改成%，存在$HOME/.vim/bookmarks
+function! g:BMBufferFileLocation(file)
+	let s:prefix = $HOME
+	if !has("win32")
+		let s:prefix = s:prefix . '/.vim/bookmarks/'
+	else
+		let s:prefix = s:prefix . '\\.vim\\bookmarks\\'
+	endif
+	return s:prefix . fnamemodify(a:file, ":p:gs?[\\/]?\%?")
+endfunction
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " 不同操作系统相关的配置
