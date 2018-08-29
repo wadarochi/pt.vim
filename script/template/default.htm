@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>%title%</title>
+    <link rel="Stylesheet" type="text/css" href="%root_path%assets/css/style.css" />
+    <link rel="stylesheet" type="text/css" href="%root_path%assets/google-code-prettify/prettify.css" >
+    <!-- add more style sheets and javascripts -->
+</head>
+<body>
+<!--<body onload="prettyPrint()">-->
+<nav>
+	<!--<a href="%root_path%index.html">Index</a>-->
+	<!--<a href="%root_path%about.html">About</a>-->
+    <a href="https://wadarochi.github.io">Blog</a>
+	<!--<a href="%root_path%sitemap.html">SiteMap</a>-->
+</nav>
+
+<div class="content">
+%content%
+</div>
+
+</section>
+
+<footer>
+    感谢您花时间阅读本文！
+</footer>
+
+
+    <script src="%root_path%assets/js/jquery-1.7.1.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function(){
+        $('pre').addClass('prettyprint linenums') 
+        prettyPrint()})
+    </script>
+    <script src="%root_path%assets/google-code-prettify/prettify.js"></script>
+
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body>
+</html>
