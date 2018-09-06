@@ -64,6 +64,10 @@ call dein#add('altercation/vim-colors-solarized')
 " vim-bookmarks plugin
 call dein#add('MattesGroeger/vim-bookmarks')
 
+" Signify uses the sign column to indicate added, modified and removed lines
+" based on the data of an underlying version control system.
+call dein#add('mhinz/vim-signify')
+
 " my own plugin
 call dein#local('~/.vim/bundle', {},
     \ ['pt.vim'])
