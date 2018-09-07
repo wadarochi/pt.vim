@@ -68,6 +68,9 @@ call dein#add('MattesGroeger/vim-bookmarks')
 " based on the data of an underlying version control system.
 call dein#add('mhinz/vim-signify')
 
+" show indent character
+call dein#add('Yggdroot/indentLine')
+
 " my own plugin
 call dein#local('~/.vim/bundle', {},
     \ ['pt.vim'])
@@ -374,6 +377,15 @@ function! g:BMBufferFileLocation(file)
 	endif
 	return s:prefix . fnamemodify(a:file, ":p:gs?[\\/]?\%?")
 endfunction
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" indentLine
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:indentLine_setColors = 0
+let g:indentLine_char = '┆'
+let g:indentLine_leadingSpaceChar = '˰'
+let g:indentLine_leadingSpaceEnabled = 1
+set list lcs=tab:\|\ 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " 不同操作系统相关的配置
