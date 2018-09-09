@@ -106,11 +106,11 @@ endif
 
 " 以上是通用插件，下面的插件需要针对不同的文件类型
 " lua-support
-call dein#add('vim-scripts/lua-support',
+call dein#add('WolfgangMehner/lua-support',
 	\ {'on_ft': ['lua']})
 
 " c-support
-call dein#add('vimscript/c-support',
+call dein#add('WolfgangMehner/c-support',
 	\ {'on_ft': ['c', 'cpp']})
 
 " Required:

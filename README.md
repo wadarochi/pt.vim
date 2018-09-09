@@ -2,10 +2,38 @@
 
 ## 说明
 本路径用于存放PT同学的各种语言相关的vim设置，包含如下语言：
- * txt
- * python
+* txt
+* python
 
 除此之外，还存放了PT同学的vim配置以及跨平台vim插件安装脚本（基于dein）。
+
+### 插件列表
+* [dein](https://github.com/Shougo/dein.vim) : Dark powered Vim/Neovim plugin manager.
+* [YouCompleteMe](https://valloric.github.io/YouCompleteMe/) : A code-completion engine for Vim.
+* [NERDTree](https://github.com/scrooloose/nerdtree) : A tree explorer plugin for vim.
+* [Hexmode](https://github.com/fidian/hexmode) : Vim plugin to edit binary files in a hex mode automatically.
+* [TaskList](https://github.com/vim-scripts/TaskList.vim) : Eclipse like task list.
+* [Tagbar](https://majutsushi.github.io/tagbar/) : A class outline viewer for Vim.
+* [Unite](https://github.com/Shougo/unite.vim) : Unite and create user interfaces.
+* [Vimwiki](https://github.com/vimwiki/vimwiki) : Personal Wiki for Vim.
+* [vim-airline](https://github.com/vim-airline/vim-airline) : lean & mean status/tabline for vim that's light as air.
+* [vim-airline-themes](https://github.com/vim-airline/vim-airline-themes) : A collection of themes for vim-airline.
+* [Ag](https://github.com/rking/ag.vim) : Vim plugin for the_silver_searcher, 'ag', a replacement for the Perl module / CLI script 'ack'.
+* [UltiSnips](https://github.com/SirVer/ultisnips) : The ultimate snippet solution for Vim. Send pull requests to SirVer/ultisnips!
+* [vim-snippets](https://github.com/honza/vim-snippets) : vim-snipmate default snippets (Previously snipmate-snippets).
+* [DrawIt](https://github.com/vim-scripts/DrawIt) : Ascii drawing plugin: lines, ellipses, arrows, fills, and more!
+* [vim-bracketed-paste](https://github.com/ConradIrwin/vim-bracketed-paste) : Handles bracketed-paste-mode in vim (aka. automatic `:set paste`) .
+* [vim-wakatime](https://github.com/wakatime/vim-wakatime) : Vim plugin for automatic time tracking and metrics generated from your programming activity.
+* [vim-colors-solarized](https://github.com/altercation/vim-colors-solarized) : precision colorscheme for the vim text editor.
+* [vim-bookmarks](https://github.com/MattesGroeger/vim-bookmarks) : Vim bookmark plugin.
+* [vim-signify](https://github.com/mhinz/vim-signify) : Show a diff using Vim its sign column.
+* [indentLine](https://github.com/Yggdroot/indentLine) : A vim plugin to display the indention levels with thin vertical lines.
+* [pt.vim](https://github.com/wadarochi/pt.vim) : this repo.
+* [YCM-Generator](https://github.com/rdnetto/YCM-Generator) : Generates config files for YouCompleteMe.
+* [vim-ripgrep](https://github.com/jremmen/vim-ripgrep) : Use RipGrep in Vim and display results in a quickfix list.
+* [vimproc.vim](https://github.com/Shougo/vimproc.vim) : Interactive command execution in Vim.
+* [lua-support](https://github.com/WolfgangMehner/lua-support) : Edit Lua scripts in Vim/gVim/Neovim. Insert code snippets, run, compile, and check the code and look up help.
+* [c-support](https://github.com/WolfgangMehner/c-support) : Edit C/C++ programs in Vim/gVim. Insert code snippets, compile the code, run Make/CMake/... and look up help.
 
 ## 安装步骤
  1. 将pt.vim从github上clone到本地
