@@ -34,6 +34,7 @@
 * [vimproc.vim](https://github.com/Shougo/vimproc.vim) : Interactive command execution in Vim.
 * [lua-support](https://github.com/WolfgangMehner/lua-support) : Edit Lua scripts in Vim/gVim/Neovim. Insert code snippets, run, compile, and check the code and look up help.
 * [c-support](https://github.com/WolfgangMehner/c-support) : Edit C/C++ programs in Vim/gVim. Insert code snippets, compile the code, run Make/CMake/... and look up help.
+* [vim-searchindex](https://github.com/google/vim-searchindex) : This plugin shows how many times does a search pattern occur in the current buffer.
 
 ## 安装步骤
  1. 将pt.vim从github上clone到本地

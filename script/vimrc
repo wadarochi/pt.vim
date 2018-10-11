@@ -71,6 +71,9 @@ call dein#add('mhinz/vim-signify')
 " show indent character
 call dein#add('Yggdroot/indentLine')
 
+" shows how many times does a search pattern occur in the current buffer
+call dein#add('google/vim-searchindex')
+
 " my own plugin
 call dein#local('~/.vim/bundle', {},
     \ ['pt.vim'])
