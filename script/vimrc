@@ -58,8 +58,8 @@ call dein#add('ConradIrwin/vim-bracketed-paste')
 " wakatime
 call dein#add('wakatime/vim-wakatime')
 
-" solarized
-call dein#add('altercation/vim-colors-solarized')
+" material
+call dein#add('kaicataldo/material.vim')
 
 " vim-bookmarks plugin
 call dein#add('MattesGroeger/vim-bookmarks')
@@ -145,10 +145,16 @@ endif
 if has('gui_running')
     set columns=160
     set lines=70
-	set background=light
+	set background=dark
 else
 	set background=dark
 endif
+
+if (has('termguicolors'))
+	set termguicolors
+endif
+
+let g:material_theme_style = 'dark'
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " common setting
@@ -315,7 +321,7 @@ let g:airline_symbols.branch = ''
 let g:airline_symbols.readonly = ''
 let g:airline_symbols.linenr = ''
 let g:airline#extensions#tabline#enabled = 1
-let g:airline_theme="powerlineish"
+let g:airline_theme="material"
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " YouCompleteMe & UltiSnips

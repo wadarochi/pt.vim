@@ -24,7 +24,7 @@
 * [DrawIt](https://github.com/vim-scripts/DrawIt) : Ascii drawing plugin: lines, ellipses, arrows, fills, and more!
 * [vim-bracketed-paste](https://github.com/ConradIrwin/vim-bracketed-paste) : Handles bracketed-paste-mode in vim (aka. automatic `:set paste`) .
 * [vim-wakatime](https://github.com/wakatime/vim-wakatime) : Vim plugin for automatic time tracking and metrics generated from your programming activity.
-* [vim-colors-solarized](https://github.com/altercation/vim-colors-solarized) : precision colorscheme for the vim text editor.
+* [material.vim](https://github.com/kaicataldo/material.vim) : A dark color scheme for Vim/Neovim based on the Material color scheme.
 * [vim-bookmarks](https://github.com/MattesGroeger/vim-bookmarks) : Vim bookmark plugin.
 * [vim-signify](https://github.com/mhinz/vim-signify) : Show a diff using Vim its sign column.
 * [indentLine](https://github.com/Yggdroot/indentLine) : A vim plugin to display the indention levels with thin vertical lines.
