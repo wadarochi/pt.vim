@@ -1,6 +1,6 @@
 "dein Scripts-----------------------------
 if &compatible
-  set nocompatible               " Be iMproved
+	set nocompatible               " Be iMproved
 endif
 
 " Required:
@@ -76,10 +76,10 @@ call dein#add('google/vim-searchindex')
 
 " my own plugin
 call dein#local('~/.vim/bundle', {},
-    \ ['pt.vim'])
+	\ ['pt.vim'])
 
 call dein#local('~/.vim/bundle', {},
-    \ ['YouCompleteMe'])
+	\ ['YouCompleteMe'])
 
 " how to update YouCompleteMe:
 " cd  ~/.vim/bundle/YouCompleteMe
@@ -124,7 +124,7 @@ filetype plugin indent on
 
 " If you want to install not installed plugins on startup.
 if dein#check_install()
-  call dein#install()
+	call dein#install()
 endif
 
 "End dein Scripts-------------------------
@@ -132,19 +132,19 @@ endif
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " UI setting
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-colo solarized
+colo material
 syntax enable
 
 if has("mac") || has("macunix")
-    set guifont=Monaco\ for\ Powerline:h12
+	set guifont=Monaco\ for\ Powerline:h12
 elseif has("win32") || has("win64")
-    set guifont=Monaco\ for\ Powerline:h12:cANSI
-    set renderoptions=type:directx,renmode:5
+	set guifont=Monaco\ for\ Powerline:h12:cANSI
+	set renderoptions=type:directx,renmode:5
 endif
 
 if has('gui_running')
-    set columns=160
-    set lines=70
+	set columns=160
+	set lines=70
 	set background=dark
 else
 	set background=dark
@@ -269,12 +269,12 @@ nnoremap <space>b :Unite vim_bookmarks<cr>
 
 " Use ag for search
 if executable('ag')
-  " Use ag in unite grep source.
-  let g:unite_source_grep_command = 'ag'
-  let g:unite_source_grep_default_opts =
-  \ '-i --line-numbers --nocolor --nogroup --hidden --ignore ' .
-  \  '''.hg'' --ignore ''.svn'' --ignore ''.git'' --ignore ''.bzr'''
-  let g:unite_source_grep_recursive_opt = ''
+	" Use ag in unite grep source.
+	let g:unite_source_grep_command = 'ag'
+	let g:unite_source_grep_default_opts =
+				\ '-i --line-numbers --nocolor --nogroup --hidden --ignore ' .
+				\  '''.hg'' --ignore ''.svn'' --ignore ''.git'' --ignore ''.bzr'''
+	let g:unite_source_grep_recursive_opt = ''
 endif
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -310,7 +310,7 @@ let NERDTreeChDirMode=2
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set laststatus=2
 if !exists('g:airline_symbols')
-  let g:airline_symbols = {}
+	let g:airline_symbols = {}
 endif
 
 let g:airline_left_sep = ''
@@ -321,7 +321,7 @@ let g:airline_symbols.branch = ''
 let g:airline_symbols.readonly = ''
 let g:airline_symbols.linenr = ''
 let g:airline#extensions#tabline#enabled = 1
-let g:airline_theme="material"
+let g:airline_theme = 'material'
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " YouCompleteMe & UltiSnips
@@ -369,12 +369,12 @@ nmap <leader>mg <Plug>BookmarkMoveToLine
 
 " Unite Integration
 call unite#custom#profile('source/vim_bookmarks', 'context', {
-  \   'winheight': 13,
-  \   'direction': 'botright',
-  \   'start_insert': 0,
-  \   'keep_focus': 1,
-  \   'no_quit': 1,
-  \ })
+	\   'winheight': 13,
+	\   'direction': 'botright',
+	\   'start_insert': 0,
+	\   'keep_focus': 1,
+	\   'no_quit': 1,
+	\ })
 
 " 每个buffer存放bookmarks的地方，选取完整路径，然后将linesep改成%，存在$HOME/.vim/bookmarks
 function! g:BMBufferFileLocation(file)
