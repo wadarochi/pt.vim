@@ -28,8 +28,11 @@ call dein#add('vim-scripts/TaskList.vim')
 " tagbar
 call dein#add('majutsushi/tagbar')
 
-" unite
-call dein#add('Shougo/unite.vim')
+" denite
+call dein#add('Shougo/denite.nvim')
+
+" denite mru
+call dein#add('Shougo/neomru.vim')
 
 " vimwiki
 call dein#add('vimwiki/vimwiki')
@@ -39,9 +42,6 @@ call dein#add('vim-airline/vim-airline')
 
 " airline-theme
 call dein#add('vim-airline/vim-airline-themes')
-
-" Ag
-call dein#add('rking/ag.vim')
 
 " ultisnips
 call dein#add('SirVer/ultisnips')
@@ -253,45 +253,42 @@ nnoremap <space>b :call PtSetBase() <CR>
 nnoremap <space>v :call PtShowBase() <CR>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" unite
+" denite.nvim
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" 文件搜索
-nnoremap <C-p> :Unite -start-insert file_rec/async<cr>
-" 文本grep
-nnoremap <space>/ :Unite -start-insert grep:.<cr>
-" yank history搜索
-let g:unite_source_history_yank_enable = 1
-nnoremap <space>y :Unite -start-insert history/yank<cr>
-" Buffer switching
-nnoremap <space>s :Unite -quick-match -start-insert buffer<cr>
-" bookmarks
-nnoremap <space>b :Unite vim_bookmarks<cr>
+" For ripgrep
+call denite#custom#var('file/rec', 'command',
+\ ['rg', '--files', '--glob', '!.git'])
 
-" Use ag for search
-if executable('ag')
-	" Use ag in unite grep source.
-	let g:unite_source_grep_command = 'ag'
-	let g:unite_source_grep_default_opts =
-				\ '-i --line-numbers --nocolor --nogroup --hidden --ignore ' .
-				\  '''.hg'' --ignore ''.svn'' --ignore ''.git'' --ignore ''.bzr'''
-	let g:unite_source_grep_recursive_opt = ''
-endif
+call denite#custom#map(
+	\ 'insert',
+	\ '<Down>',
+	\ '<denite:move_to_next_line>',
+	\ 'noremap'
+	\)
+call denite#custom#map(
+	\ 'insert',
+	\ '<Up>',
+	\ '<denite:move_to_previous_line>',
+	\ 'noremap'
+	\)
 
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Ag.vim
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" 目前只有如下这些文件类型需要使用ag的file type功能
-let s:ft_map = {
-\ "c": "--cpp",
-\ "cpp": "--cpp",
-\ "java": "--java",
-\ "python": "--python",
-\ "lua": "--lua",
-\ }
-function PtGetFileType()
-	return get(s:ft_map, &ft, "")
-endfunction
-nnoremap <space>f :execute "Ag!" . PtGetFileType() " --nogroup " . expand("<cword>") <CR>
+" Ripgrep command on grep source
+call denite#custom#var('grep', 'command', ['rg'])
+call denite#custom#var('grep', 'default_opts',
+		\ ['--vimgrep', '--no-heading'])
+call denite#custom#var('grep', 'recursive_opts', [])
+call denite#custom#var('grep', 'pattern_opt', ['--regexp'])
+call denite#custom#var('grep', 'separator', ['--'])
+call denite#custom#var('grep', 'final_opts', [])
+
+" 文本搜索
+nnoremap <space>/ :Denite -no-empty grep:.<cr>
+" Ctrl-P
+noremap <C-p> :Denite file_rec<CR>
+" buffer切换
+nnoremap <space>s :Denite buffer<cr>
+" 最近打开过的文件
+nnoremap <space>r :Denite file_mru<cr>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Rg.vim
@@ -366,15 +363,6 @@ nmap <leader>mx <Plug>BookmarkClearAll
 nmap <leader>mkk <Plug>BookmarkMoveUp
 nmap <leader>mjj <Plug>BookmarkMoveDown
 nmap <leader>mg <Plug>BookmarkMoveToLine
-
-" Unite Integration
-call unite#custom#profile('source/vim_bookmarks', 'context', {
-	\   'winheight': 13,
-	\   'direction': 'botright',
-	\   'start_insert': 0,
-	\   'keep_focus': 1,
-	\   'no_quit': 1,
-	\ })
 
 " 每个buffer存放bookmarks的地方，选取完整路径，然后将linesep改成%，存在$HOME/.vim/bookmarks
 function! g:BMBufferFileLocation(file)

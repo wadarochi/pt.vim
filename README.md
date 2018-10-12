@@ -14,11 +14,10 @@
 * [Hexmode](https://github.com/fidian/hexmode) : Vim plugin to edit binary files in a hex mode automatically.
 * [TaskList](https://github.com/vim-scripts/TaskList.vim) : Eclipse like task list.
 * [Tagbar](https://majutsushi.github.io/tagbar/) : A class outline viewer for Vim.
-* [Unite](https://github.com/Shougo/unite.vim) : Unite and create user interfaces.
+* [denite.nvim](https://github.com/Shougo/denite.nvim) : Dark powered asynchronous unite all interfaces for Neovim/Vim8.
 * [Vimwiki](https://github.com/vimwiki/vimwiki) : Personal Wiki for Vim.
 * [vim-airline](https://github.com/vim-airline/vim-airline) : lean & mean status/tabline for vim that's light as air.
 * [vim-airline-themes](https://github.com/vim-airline/vim-airline-themes) : A collection of themes for vim-airline.
-* [Ag](https://github.com/rking/ag.vim) : Vim plugin for the_silver_searcher, 'ag', a replacement for the Perl module / CLI script 'ack'.
 * [UltiSnips](https://github.com/SirVer/ultisnips) : The ultimate snippet solution for Vim. Send pull requests to SirVer/ultisnips!
 * [vim-snippets](https://github.com/honza/vim-snippets) : vim-snipmate default snippets (Previously snipmate-snippets).
 * [DrawIt](https://github.com/vim-scripts/DrawIt) : Ascii drawing plugin: lines, ellipses, arrows, fills, and more!
