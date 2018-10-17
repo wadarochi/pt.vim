@@ -74,6 +74,9 @@ call dein#add('Yggdroot/indentLine')
 " shows how many times does a search pattern occur in the current buffer
 call dein#add('google/vim-searchindex')
 
+" codequery support
+call dein#add('devjoe/vim-codequery')
+
 " my own plugin
 call dein#local('~/.vim/bundle', {},
 	\ ['pt.vim'])
