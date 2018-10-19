@@ -75,7 +75,7 @@ call dein#add('Yggdroot/indentLine')
 call dein#add('google/vim-searchindex')
 
 " codequery support
-call dein#add('devjoe/vim-codequery')
+call dein#add('wadarochi/vim-codequery')
 
 " my own plugin
 call dein#local('~/.vim/bundle', {},
@@ -175,7 +175,7 @@ set autoindent shiftwidth=4
 set smarttab
 
 " auto change CWD when open a new buffer
-autocmd BufRead * silent! cd %:p:h
+autocmd BufRead * silent! lcd %:p:h
 
 " If you prefer the Omni-Completion tip window to close when a selection is
 " made, these lines close it on movement in insert mode or when leaving
@@ -367,7 +367,7 @@ nmap <leader>mkk <Plug>BookmarkMoveUp
 nmap <leader>mjj <Plug>BookmarkMoveDown
 nmap <leader>mg <Plug>BookmarkMoveToLine
 
-" 每个buffer存放bookmarks的地方，选取完整路径，然后将linesep改成%，存在$HOME/.vim/bookmarks
+" 每个buffer存放bookmarks的地方，选取完整路径，然后将sep改成%，存在$HOME/.vim/bookmarks
 function! g:BMBufferFileLocation(file)
 	let s:prefix = $HOME
 	if !has("win32")
