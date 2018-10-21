@@ -343,6 +343,13 @@ nnoremap <leader>gc :pclose<CR>
 let g:ycm_confirm_extra_conf=0
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" vim-codequery
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+nnoremap <leader>cm :CodeQueryMenu Denite<CR>
+nnoremap <leader>cd :CodeQueryMakeDB 
+nnoremap <leader>cc :CodeQuery<CR>
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " vim-bookmarks
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 highlight BookmarkSign ctermbg=NONE ctermfg=160
