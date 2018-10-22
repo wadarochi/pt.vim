@@ -14,17 +14,16 @@
 * [Hexmode](https://github.com/fidian/hexmode) : Vim plugin to edit binary files in a hex mode automatically.
 * [TaskList](https://github.com/vim-scripts/TaskList.vim) : Eclipse like task list.
 * [Tagbar](https://majutsushi.github.io/tagbar/) : A class outline viewer for Vim.
-* [Unite](https://github.com/Shougo/unite.vim) : Unite and create user interfaces.
+* [denite.nvim](https://github.com/Shougo/denite.nvim) : Dark powered asynchronous unite all interfaces for Neovim/Vim8.
 * [Vimwiki](https://github.com/vimwiki/vimwiki) : Personal Wiki for Vim.
 * [vim-airline](https://github.com/vim-airline/vim-airline) : lean & mean status/tabline for vim that's light as air.
 * [vim-airline-themes](https://github.com/vim-airline/vim-airline-themes) : A collection of themes for vim-airline.
-* [Ag](https://github.com/rking/ag.vim) : Vim plugin for the_silver_searcher, 'ag', a replacement for the Perl module / CLI script 'ack'.
 * [UltiSnips](https://github.com/SirVer/ultisnips) : The ultimate snippet solution for Vim. Send pull requests to SirVer/ultisnips!
 * [vim-snippets](https://github.com/honza/vim-snippets) : vim-snipmate default snippets (Previously snipmate-snippets).
 * [DrawIt](https://github.com/vim-scripts/DrawIt) : Ascii drawing plugin: lines, ellipses, arrows, fills, and more!
 * [vim-bracketed-paste](https://github.com/ConradIrwin/vim-bracketed-paste) : Handles bracketed-paste-mode in vim (aka. automatic `:set paste`) .
 * [vim-wakatime](https://github.com/wakatime/vim-wakatime) : Vim plugin for automatic time tracking and metrics generated from your programming activity.
-* [vim-colors-solarized](https://github.com/altercation/vim-colors-solarized) : precision colorscheme for the vim text editor.
+* [material.vim](https://github.com/kaicataldo/material.vim) : A dark color scheme for Vim/Neovim based on the Material color scheme.
 * [vim-bookmarks](https://github.com/MattesGroeger/vim-bookmarks) : Vim bookmark plugin.
 * [vim-signify](https://github.com/mhinz/vim-signify) : Show a diff using Vim its sign column.
 * [indentLine](https://github.com/Yggdroot/indentLine) : A vim plugin to display the indention levels with thin vertical lines.
@@ -34,6 +33,8 @@
 * [vimproc.vim](https://github.com/Shougo/vimproc.vim) : Interactive command execution in Vim.
 * [lua-support](https://github.com/WolfgangMehner/lua-support) : Edit Lua scripts in Vim/gVim/Neovim. Insert code snippets, run, compile, and check the code and look up help.
 * [c-support](https://github.com/WolfgangMehner/c-support) : Edit C/C++ programs in Vim/gVim. Insert code snippets, compile the code, run Make/CMake/... and look up help.
+* [vim-searchindex](https://github.com/google/vim-searchindex) : This plugin shows how many times does a search pattern occur in the current buffer.
+* [vim-codequery](https://github.com/wadarochi/vim-codequery) : Search + Browse + Understand your code more efficiently, fork from devjoe. 
 
 ## 安装步骤
  1. 将pt.vim从github上clone到本地
