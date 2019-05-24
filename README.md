@@ -69,5 +69,15 @@ git config --global http.proxy 'socks5://127.0.0.1:8087'
 git config --global https.proxy 'socks5://127.0.0.1:8087'
 ~~~
 
+2. 因为最新版的denite.nvim依赖Python3的第三方库pynvim，所以需要安装一下：
+~~~bash
+pip3 install --user pynvim
+~~~
+
+如果使用的是Mojave版本的macOS，还需要自己装一下头文件才能用pip3装pynvim：
+~~~bash
+sudo installer -pkg /Library/Developer/CommandLineTools/Packages/macOS_SDK_headers_for_macOS_10.14.pkg -target /
+~~~
+
 ## 当前存在的问题
  1. FIXME: vimproc在安装的时候似乎会报找不到so，看起来就是没有正确的make，但是事实上是装好了，在vim里面功能是正常的，可能是dein的问题。

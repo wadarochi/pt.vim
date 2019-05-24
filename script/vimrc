@@ -31,6 +31,12 @@ call dein#add('majutsushi/tagbar')
 " denite
 call dein#add('Shougo/denite.nvim')
 
+" nvim-yarp, required by denite.nvim
+call dein#add('roxma/nvim-yarp')
+
+" vim-hug-neovim-rpc, required by denite.nvim
+call dein#add('roxma/vim-hug-neovim-rpc')
+
 " denite mru
 call dein#add('Shougo/neomru.vim')
 
