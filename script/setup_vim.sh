@@ -6,6 +6,7 @@ mkdir -p ~/.vim/undo
 mkdir -p ~/.vim/backup
 mkdir -p ~/.vim/swap
 mkdir -p ~/.vim/bookmarks
+mkdir -p ~/.vim/cache/tags
 
 # prepare for path
 mkdir -p ~/.vim/bundle/

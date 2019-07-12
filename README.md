@@ -35,8 +35,26 @@
 * [c-support](https://github.com/WolfgangMehner/c-support) : Edit C/C++ programs in Vim/gVim. Insert code snippets, compile the code, run Make/CMake/... and look up help.
 * [vim-searchindex](https://github.com/google/vim-searchindex) : This plugin shows how many times does a search pattern occur in the current buffer.
 * [vim-codequery](https://github.com/wadarochi/vim-codequery) : Search + Browse + Understand your code more efficiently, fork from devjoe. 
+* [echodoc.vim](https://github.com/Shougo/echodoc.vim) : Print documents in echo area. I use it for previewing function signature.
+* [vim-gutentags](https://github.com/ludovicchabant/vim-gutentags) : A Vim plugin that manages your tag files https://bolt80.com/gutentags/.
+* [gutentags_plus](https://github.com/skywind3000/gutentags_plus) : The right way to use gtags with gutentags.
+* [vim-preview](https://github.com/skywind3000/vim-preview) : The missing preview window for vim. Awesome plugin!
+* [vim-cpp-enhanced-highlight](https://github.com/octol/vim-cpp-enhanced-highlight) : Additional Vim syntax highlighting for C++ (including C++11/14/17).
+* [vim-textobj-user](https://github.com/kana/vim-textobj-user) : Vim plugin: Create your own text objects http://www.vim.org/scripts/script.php?script_id=2100.
+* [LeaderF](https://github.com/Yggdroot/LeaderF) : An asynchronous fuzzy finder which is used to quickly locate files, buffers, mrus, tags, etc. in large project. Awesome plugin!
 
 ## 安装步骤
+ 0. 建议安装的工具们
+        # ctags的替代品，因为之前的ctags已经太老了，这个是持续演进的版本
+        brew install --HEAD universal-ctags/universal-ctags/universal-ctags
+
+        # GNU global
+        brew install global
+        cp /usr/local/Cellar/global/6.6.3/share/gtags/gtags.conf ~/.globalrc
+
+        # pygments
+        pip install pygments
+
  1. 将pt.vim从github上clone到本地
 
         git clone https://github.com/wadarochi/pt.vim.git
