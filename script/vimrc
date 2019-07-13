@@ -4,7 +4,7 @@ if &compatible
 endif
 
 " Required:
-set runtimepath^=~/.vim/dein//repos/github.com/Shougo/dein.vim
+set runtimepath^=$HOME\.vim\dein\repos\github.com\Shougo\dein.vim
 
 " Required:
 call dein#begin(expand('~/.vim/dein/'))
@@ -75,7 +75,7 @@ call dein#add('MattesGroeger/vim-bookmarks')
 
 " Signify uses the sign column to indicate added, modified and removed lines
 " based on the data of an underlying version control system.
-call dein#add('mhinz/vim-signify')
+" call dein#add('mhinz/vim-signify')
 
 " show indent character
 call dein#add('Yggdroot/indentLine')
@@ -99,14 +99,14 @@ call dein#add('skywind3000/vim-preview')
 call dein#local('~/.vim/bundle', {},
 	\ ['pt.vim'])
 
-call dein#local('~/.vim/bundle', {},
+call dein#local('$HOME' . '\\.vim\\bundle', {},
 	\ ['YouCompleteMe'])
 
 " how to update YouCompleteMe:
-" cd  ~/.vim/bundle/YouCompleteMe
+" cd  $HOME/.vim/bundle/YouCompleteMe
 " git clean -f
 " git pull
-" rm -r ~/.vim/bundle/YouCompleteMe/third_party/ycmd/third_party
+" rm -r $HOME/.vim/bundle/YouCompleteMe/third_party/ycmd/third_party
 " git submodule update --recursive --init
 " ./install.py --clang-completer
 
@@ -151,7 +151,7 @@ call dein#add('sgur/vim-textobj-parameter')
 
 " LeaderF
 call dein#add('Yggdroot/LeaderF', {
-			\ 'build': "./install.sh",
+			\ 'build': ".\\install.bat",
 			\ })
 
 " Required:
@@ -181,8 +181,8 @@ elseif has("win32") || has("win64")
 endif
 
 if has('gui_running')
-	set columns=160
-	set lines=70
+	set columns=120
+	set lines=40
 	set background=dark
 else
 	set background=dark
@@ -225,6 +225,9 @@ autocmd InsertLeave * if pumvisible() == 0|pclose|endif
 set enc=utf-8
 set fileencodings=utf-8,cp936,big5,euc-kr,euc-jp
 
+source $VIMRUNTIME/delmenu.vim
+source $VIMRUNTIME/menu.vim
+
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " tagbar
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -233,6 +236,8 @@ nmap <leader>tb :TagbarToggle<CR>
 map <leader>v <Plug>TaskList
 " for vimwiki
 nmap <leader>tt <Plug>VimwikiToggleListItem
+
+let g:tagbar_ctags_bin='C:\\ProgramData\\chocolatey\\bin\\ctags.exe'
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " tagbar
@@ -248,14 +253,20 @@ else
 				\ 'path_html': $HOME . '\\vimwiki_html\\',
 				\ 'template_path': $HOME . '\\vimwiki_html\\template',
 				\ 'template_default': 'default',
-				\ 'template_ext': '.htm'}]
+				\ 'template_ext': '.htm',
+				\ 'nested_syntaxes': {
+					\ 'python': 'python',
+					\ 'c++': 'cpp',
+					\ 'c': 'c',
+					\ 'java': 'java',
+					\ 'objcpp': 'objcpp'}}]
 endif
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " txt.vim
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "syntax highlight for txt.vim，不知道为什么pt.vim里面ftdetect不能用，只好放这里
-au BufRead,BufNewFile *.txt setlocal ft=txt
+" au BufRead,BufNewFile *.txt setlocal ft=txt
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " 切换路径，有的时候需要在指定路径下跑ag、unite什么的
@@ -338,7 +349,7 @@ let g:echodoc_enable_at_startup = 1
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Rg.vim
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:rg_binary = "/usr/bin/rg"
+let g:rg_binary = "C:\\ProgramData\\chocolatey\\lib\\ripgrep\\tools\\rg.exe"
 let g:rg_highlight = 1
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -355,13 +366,13 @@ if !exists('g:airline_symbols')
 	let g:airline_symbols = {}
 endif
 
-let g:airline_left_sep = ''
-let g:airline_left_alt_sep = ''
-let g:airline_right_sep = ''
-let g:airline_right_alt_sep = ''
-let g:airline_symbols.branch = ''
-let g:airline_symbols.readonly = ''
-let g:airline_symbols.linenr = ''
+"let g:airline_left_sep = ''
+"let g:airline_left_alt_sep = ''
+"let g:airline_right_sep = ''
+"let g:airline_right_alt_sep = ''
+"let g:airline_symbols.branch = ''
+"let g:airline_symbols.readonly = ''
+"let g:airline_symbols.linenr = ''
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_theme = 'base16'
 
@@ -376,11 +387,24 @@ let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 
 " If you want :UltiSnipsEdit to split your window.
 let g:UltiSnipsEditSplit="vertical"
+let g:ycm_server_python_interpreter="C:\\python27\\python.exe"
 nnoremap <leader>gl :YcmCompleter GoToDeclaration<CR>
 nnoremap <leader>gf :YcmCompleter GoToDefinition<CR>
 nnoremap <leader>gg :YcmCompleter GoToDefinitionElseDeclaration<CR>
 nnoremap <leader>gr :YcmCompleter GoToReferences<CR>
 nnoremap <leader>gc :pclose<CR>
+
+" 使用YouCompleteMe的文件类型
+let g:ycm_filetype_whitelist = { 
+			\ "c":1,
+			\ "cpp":1,
+			\ "objc":1,
+			\ "java":1,
+			\ "py":1,
+			\ "sh":1,
+			\ "zsh":1,
+			\ "zimbu":1,
+			\ }
 
 let g:ycm_confirm_extra_conf=0
 
@@ -421,7 +445,7 @@ if executable('gtags-cscope') && executable('gtags')
 endif
 
 " 将自动生成的 tags 文件全部放入 ~/.cache/tags 目录中，避免污染工程目录
-let s:vim_tags = expand('~/.vim/cache/tags')
+let s:vim_tags = expand('$HOME\\.vim\\cache\\tags')
 let g:gutentags_cache_dir = s:vim_tags
 
 " 配置 ctags 的参数
@@ -440,7 +464,7 @@ endif
 let g:gutentags_auto_add_gtags_cscope = 0
 
 let $GTAGSLABEL = 'native-pygments'
-let $GTAGSCONF = '/Users/netease/.globalrc'
+let $GTAGSCONF = '$HOME\\gtags.conf'
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " gutentags_plus
@@ -520,9 +544,9 @@ set list lcs=tab:\|\
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 function PtCommonInit()
 	if !has("win32")
-		set backupdir=~/.vim/backup//
-		set directory=~/.vim/swap//
-		set undodir=~/.vim/undo//
+		set backupdir=$HOME/.vim/backup//
+		set directory=$HOME/.vim/swap//
+		set undodir=$HOME/.vim/undo//
 	else
 		exe "set backupdir=" . $HOME . "\\.vim\\backup\\"
 		exe "set directory=" . $HOME . "\\.vim\\swap\\"
@@ -570,3 +594,9 @@ else
 		call PtFreeBSDInit()
 	endif
 endif
+
+" let g:vimwiki_list = [{'path': 'C:\\Users\\gzzhangbinbin\\vimwiki\\',
+" 			\ 'path_html': 'C:\\Users\\gzzhangbinbin\\vimwiki_html\\',
+" 			\ 'template_path': 'C:\\Users\\gzzhangbinbin\\vimwiki_html\\template',
+" 			\ 'template_default': 'default',
+" 			\ 'template_ext': '.htm'}]
