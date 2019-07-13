@@ -439,6 +439,9 @@ endif
 " 禁用 gutentags 自动加载 gtags 数据库的行为
 let g:gutentags_auto_add_gtags_cscope = 0
 
+let $GTAGSLABEL = 'native-pygments'
+let $GTAGSCONF = '/Users/netease/.globalrc'
+
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " gutentags_plus
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
