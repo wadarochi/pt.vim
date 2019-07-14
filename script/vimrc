@@ -440,7 +440,6 @@ endif
 let g:gutentags_auto_add_gtags_cscope = 0
 
 let $GTAGSLABEL = 'native-pygments'
-let $GTAGSCONF = '/Users/netease/.globalrc'
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " gutentags_plus
@@ -455,6 +454,12 @@ noremap <silent> <leader>lf :GscopeFind f <C-R>=expand("<cfile>")<cr><cr>
 noremap <silent> <leader>li :GscopeFind i <C-R>=expand("<cfile>")<cr><cr>
 noremap <silent> <leader>ld :GscopeFind d <C-R><C-W><cr>
 noremap <silent> <leader>la :GscopeFind a <C-R><C-W><cr>
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" LeaderF
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:Lf_GtagsAutoGenerate = 1
+let g:Lf_Gtagslabel = 'native-pygments'
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " vim-preview
