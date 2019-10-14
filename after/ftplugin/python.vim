@@ -4,4 +4,5 @@
 "Author:      PT <pt0079 at gmail dot com>
 "============================================================================
 
-set expandtab
+set noexpandtab
+set tabstop=4
