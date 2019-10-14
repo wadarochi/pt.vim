@@ -42,6 +42,7 @@
 * [vim-cpp-enhanced-highlight](https://github.com/octol/vim-cpp-enhanced-highlight) : Additional Vim syntax highlighting for C++ (including C++11/14/17).
 * [vim-textobj-user](https://github.com/kana/vim-textobj-user) : Vim plugin: Create your own text objects http://www.vim.org/scripts/script.php?script_id=2100.
 * [LeaderF](https://github.com/Yggdroot/LeaderF) : An asynchronous fuzzy finder which is used to quickly locate files, buffers, mrus, tags, etc. in large project. Awesome plugin!
+* [vim-rfc](https://github.com/mhinz/vim-rfc) : Query RFC database and download RFCs from within Vim.
 
 ## 安装步骤
  0. 建议安装的工具们
@@ -54,6 +55,18 @@
 
         # pygments
         pip install pygments
+
+        # nokogiri, required by vim-rfc
+        # Windows
+        choco install ruby
+        gem install nokogiri
+
+        # macOS
+        brew install ruby
+        gem install nokogiri
+
+        # Other OSs
+        gem install nokogiri
 
  1. 将pt.vim从github上clone到本地
 

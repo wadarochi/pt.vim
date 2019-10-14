@@ -77,6 +77,9 @@ call dein#add('MattesGroeger/vim-bookmarks')
 " based on the data of an underlying version control system.
 call dein#add('mhinz/vim-signify')
 
+" Query RFC database and download RFCs from within Vim.
+call dein#add('mhinz/vim-rfc')
+
 " show indent character
 call dein#add('Yggdroot/indentLine')
 
