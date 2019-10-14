@@ -31,8 +31,17 @@ call dein#add('majutsushi/tagbar')
 " denite
 call dein#add('Shougo/denite.nvim')
 
+" nvim-yarp, required by denite.nvim
+call dein#add('roxma/nvim-yarp')
+
+" vim-hug-neovim-rpc, required by denite.nvim
+call dein#add('roxma/vim-hug-neovim-rpc')
+
 " denite mru
 call dein#add('Shougo/neomru.vim')
+
+" echodoc.vim
+call dein#add('Shougo/echodoc.vim')
 
 " vimwiki
 call dein#add('vimwiki/vimwiki')
@@ -68,6 +77,9 @@ call dein#add('MattesGroeger/vim-bookmarks')
 " based on the data of an underlying version control system.
 call dein#add('mhinz/vim-signify')
 
+" Query RFC database and download RFCs from within Vim.
+call dein#add('mhinz/vim-rfc')
+
 " show indent character
 call dein#add('Yggdroot/indentLine')
 
@@ -76,6 +88,15 @@ call dein#add('google/vim-searchindex')
 
 " codequery support
 call dein#add('wadarochi/vim-codequery')
+
+" Gutentags
+call dein#add('ludovicchabant/vim-gutentags')
+
+" Gutentags_plus
+call dein#add('skywind3000/gutentags_plus')
+
+" Gutentags_plus
+call dein#add('skywind3000/vim-preview')
 
 " my own plugin
 call dein#local('~/.vim/bundle', {},
@@ -118,6 +139,23 @@ call dein#add('WolfgangMehner/lua-support',
 " c-support
 call dein#add('WolfgangMehner/c-support',
 	\ {'on_ft': ['c', 'cpp']})
+
+" new cpp syntax highlight
+call dein#add('octol/vim-cpp-enhanced-highlight',
+	\ {'on_ft': ['cpp']})
+
+" textobj
+call dein#add('kana/vim-textobj-user')
+call dein#add('kana/vim-textobj-indent')
+call dein#add('kana/vim-textobj-syntax')
+call dein#add('kana/vim-textobj-function',
+	\ {'on_ft': ['c', 'cpp', 'vim', 'java']})
+call dein#add('sgur/vim-textobj-parameter')
+
+" LeaderF
+call dein#add('Yggdroot/LeaderF', {
+			\ 'build': "./install.sh",
+			\ })
 
 " Required:
 call dein#end()
@@ -294,6 +332,13 @@ nnoremap <space>s :Denite buffer<cr>
 nnoremap <space>r :Denite file_mru<cr>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" echodoc.vim
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" disable showmode alltogether.
+set noshowmode
+let g:echodoc_enable_at_startup = 1
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Rg.vim
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:rg_binary = "/usr/bin/rg"
@@ -321,7 +366,7 @@ let g:airline_symbols.branch = ''
 let g:airline_symbols.readonly = ''
 let g:airline_symbols.linenr = ''
 let g:airline#extensions#tabline#enabled = 1
-let g:airline_theme = 'material'
+let g:airline_theme = 'base16'
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " YouCompleteMe & UltiSnips
@@ -343,11 +388,101 @@ nnoremap <leader>gc :pclose<CR>
 let g:ycm_confirm_extra_conf=0
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" all kinds of tags
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+set tags=./.tags;,.tags
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " vim-codequery
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 nnoremap <leader>cm :CodeQueryMenu Denite<CR>
-nnoremap <leader>cd :CodeQueryMakeDB 
-nnoremap <leader>cc :CodeQuery<CR>
+nnoremap <leader>cd :CodeQuery Definition<CR> 
+nnoremap <leader>cs :CodeQuery Symbol<CR> 
+nnoremap <leader>cq :CodeQuery<CR>
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" vim-gutentags
+"
+" 作者：韦易笑
+" 链接：https://www.zhihu.com/question/47691414/answer/373700711
+" 来源：知乎
+" 著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" gutentags 搜索工程目录的标志，碰到这些文件/目录名就停止向上一级目录递归
+let g:gutentags_project_root = ['.root', '.idea', '.svn', '.git', '.hg', '.project']
+
+" 所生成的数据文件的名称
+let g:gutentags_ctags_tagfile = '.tags'
+
+" 同时开启 ctags 和 gtags 支持：
+let g:gutentags_modules = []
+if executable('ctags')
+	let g:gutentags_modules += ['ctags']
+endif
+if executable('gtags-cscope') && executable('gtags')
+	let g:gutentags_modules += ['gtags_cscope']
+endif
+
+" 将自动生成的 tags 文件全部放入 ~/.cache/tags 目录中，避免污染工程目录
+let s:vim_tags = expand('~/.vim/cache/tags')
+let g:gutentags_cache_dir = s:vim_tags
+
+" 配置 ctags 的参数
+let g:gutentags_ctags_extra_args = ['--fields=+niazS', '--extra=+q']
+let g:gutentags_ctags_extra_args += ['--c++-kinds=+px']
+let g:gutentags_ctags_extra_args += ['--c-kinds=+px']
+" 我已经全面转向Universal ctags了
+let g:gutentags_ctags_extra_args += ['--output-format=e-ctags']
+
+" 检测 ~/.vim/cache/tags 不存在就新建
+if !isdirectory(s:vim_tags)
+	silent! call mkdir(s:vim_tags, 'p')
+endif
+
+" 禁用 gutentags 自动加载 gtags 数据库的行为
+let g:gutentags_auto_add_gtags_cscope = 0
+
+let $GTAGSLABEL = 'native-pygments'
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" gutentags_plus
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:gutentags_plus_nomap = 1
+noremap <silent> <leader>ls :GscopeFind s <C-R><C-W><cr>
+noremap <silent> <leader>lg :GscopeFind g <C-R><C-W><cr>
+noremap <silent> <leader>lc :GscopeFind c <C-R><C-W><cr>
+noremap <silent> <leader>lt :GscopeFind t <C-R><C-W><cr>
+noremap <silent> <leader>le :GscopeFind e <C-R><C-W><cr>
+noremap <silent> <leader>lf :GscopeFind f <C-R>=expand("<cfile>")<cr><cr>
+noremap <silent> <leader>li :GscopeFind i <C-R>=expand("<cfile>")<cr><cr>
+noremap <silent> <leader>ld :GscopeFind d <C-R><C-W><cr>
+noremap <silent> <leader>la :GscopeFind a <C-R><C-W><cr>
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" LeaderF
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:Lf_GtagsAutoGenerate = 1
+let g:Lf_Gtagslabel = 'native-pygments'
+
+noremap <leader>fr :<C-U><C-R>=printf("Leaderf! gtags -r %s --auto-jump", expand("<cword>"))<CR><CR>
+noremap <leader>fd :<C-U><C-R>=printf("Leaderf! gtags -d %s --auto-jump", expand("<cword>"))<CR><CR>
+noremap <leader>fo :<C-U><C-R>=printf("Leaderf! gtags --recall %s", "")<CR><CR>
+noremap <leader>fn :<C-U><C-R>=printf("Leaderf gtags --next %s", "")<CR><CR>
+noremap <leader>fp :<C-U><C-R>=printf("Leaderf gtags --previous %s", "")<CR><CR>
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" vim-preview
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+autocmd FileType qf nnoremap <silent><buffer> p :PreviewQuickfix<cr>
+autocmd FileType qf nnoremap <silent><buffer> P :PreviewClose<cr>
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" new cpp syntax highlight
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:cpp_class_scope_highlight = 1
+let g:cpp_member_variable_highlight = 1
+let g:cpp_class_decl_highlight = 1
+let g:cpp_concepts_highlight = 1
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " vim-bookmarks

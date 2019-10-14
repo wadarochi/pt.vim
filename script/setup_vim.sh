@@ -6,6 +6,7 @@ mkdir -p /mnt/c/Users/gzzhangbinbin/.vim/undo
 mkdir -p /mnt/c/Users/gzzhangbinbin/.vim/backup
 mkdir -p /mnt/c/Users/gzzhangbinbin/.vim/swap
 mkdir -p /mnt/c/Users/gzzhangbinbin/.vim/bookmarks
+mkdir -p /mnt/c/Users/gzzhangbinbin/.vim/tags
 
 # prepare for path
 mkdir -p /mnt/c/Users/gzzhangbinbin/.vim/bundle/
