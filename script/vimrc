@@ -157,6 +157,10 @@ call dein#add('Yggdroot/LeaderF', {
 			\ 'build': "./install.sh",
 			\ })
 
+" Vim plugin for Gist
+call dein#add('mattn/webapi-vim')
+call dein#add('mattn/gist-vim')
+
 " Required:
 call dein#end()
 
