@@ -110,5 +110,10 @@ pip3 install --user pynvim
 sudo installer -pkg /Library/Developer/CommandLineTools/Packages/macOS_SDK_headers_for_macOS_10.14.pkg -target /
 ~~~
 
+3. 使用gist-vim时需要设置github帐号：
+~~~bash
+git config --global github.user your_username
+~~~
+
 ## 当前存在的问题
  1. FIXME: vimproc在安装的时候似乎会报找不到so，看起来就是没有正确的make，但是事实上是装好了，在vim里面功能是正常的，可能是dein的问题。
