@@ -327,9 +327,9 @@ call denite#custom#var('grep', 'separator', ['--'])
 call denite#custom#var('grep', 'final_opts', [])
 
 " 文本搜索
-nnoremap <space>/ :Denite -no-empty grep:.<cr>
+nnoremap <space>/ :Leaderf rg<cr>
 " Ctrl-P
-noremap <C-p> :Leaderf<CR>
+noremap <C-p> :Leaderf file<CR>
 " buffer切换
 nnoremap <space>s :LeaderfBuffer<cr>
 " 最近打开过的文件
