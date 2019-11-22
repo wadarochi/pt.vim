@@ -157,6 +157,10 @@ call dein#add('Yggdroot/LeaderF', {
 			\ 'build': "./install.sh",
 			\ })
 
+" Vim plugin for Gist
+call dein#add('mattn/webapi-vim')
+call dein#add('mattn/gist-vim')
+
 " Required:
 call dein#end()
 
@@ -323,13 +327,13 @@ call denite#custom#var('grep', 'separator', ['--'])
 call denite#custom#var('grep', 'final_opts', [])
 
 " 文本搜索
-nnoremap <space>/ :Denite -no-empty grep:.<cr>
+nnoremap <space>/ :Leaderf rg<cr>
 " Ctrl-P
-noremap <C-p> :Denite file_rec<CR>
+noremap <C-p> :Leaderf file<CR>
 " buffer切换
-nnoremap <space>s :Denite buffer<cr>
+nnoremap <space>s :LeaderfBuffer<cr>
 " 最近打开过的文件
-nnoremap <space>r :Denite file_mru<cr>
+nnoremap <space>r :LeaderfMru<cr>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " echodoc.vim
