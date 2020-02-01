@@ -46,8 +46,17 @@
 
 ## 安装步骤
  0. 建议安装的工具们
+
+        # 没有universal-ctags会导致默认的CTRL-]跳转不正常
         # ctags的替代品，因为之前的ctags已经太老了，这个是持续演进的版本
         brew install --HEAD universal-ctags/universal-ctags/universal-ctags
+        # 对于比较原始的比如Debian 8.9
+        git clone https://github.com/universal-ctags/ctags.git
+        cd ctags
+        ./autogen.sh
+        ./configure --prefix=/where/you/want # defaults to /usr/local
+        make
+        make install # may require extra privileges depending on where to install
 
         # GNU global
         brew install global
