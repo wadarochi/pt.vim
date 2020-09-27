@@ -37,20 +37,11 @@ call dein#add('roxma/nvim-yarp')
 " vim-hug-neovim-rpc, required by denite.nvim
 call dein#add('roxma/vim-hug-neovim-rpc')
 
-" denite mru
-call dein#add('Shougo/neomru.vim')
-
 " echodoc.vim
 call dein#add('Shougo/echodoc.vim')
 
 " vimwiki
 call dein#add('vimwiki/vimwiki')
-
-" airline
-call dein#add('vim-airline/vim-airline')
-
-" airline-theme
-call dein#add('vim-airline/vim-airline-themes')
 
 " ultisnips
 call dein#add('SirVer/ultisnips')
@@ -97,6 +88,9 @@ call dein#add('skywind3000/gutentags_plus')
 
 " Gutentags_plus
 call dein#add('skywind3000/vim-preview')
+
+" show vim markers
+call dein#add('kshenoy/vim-signature')
 
 " my own plugin
 call dein#local('~/.vim/bundle', {},
@@ -358,19 +352,28 @@ let NERDTreeChDirMode=2
 " Airline
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set laststatus=2
-if !exists('g:airline_symbols')
-	let g:airline_symbols = {}
-endif
-
-let g:airline_left_sep = ''
-let g:airline_left_alt_sep = ''
-let g:airline_right_sep = ''
-let g:airline_right_alt_sep = ''
-let g:airline_symbols.branch = ''
-let g:airline_symbols.readonly = ''
-let g:airline_symbols.linenr = ''
-let g:airline#extensions#tabline#enabled = 1
-let g:airline_theme = 'base16'
+set statusline=
+set statusline+=%#DiffAdd#%{(mode()=='n')?'\ \ NORMAL\ ':''}
+set statusline+=%#DiffChange#%{(mode()=='i')?'\ \ INSERT\ ':''}
+set statusline+=%#DiffDelete#%{(mode()=='r')?'\ \ RPLACE\ ':''}
+set statusline+=%#Cursor#%{(mode()=='v')?'\ \ VISUAL\ ':''}
+set statusline+=\ %n\           " buffer number
+set statusline+=%#Visual#       " colour
+set statusline+=%{&paste?'\ PASTE\ ':''}
+set statusline+=%{&spell?'\ SPELL\ ':''}
+set statusline+=%#CursorIM#     " colour
+set statusline+=%R                        " readonly flag
+set statusline+=%M                        " modified [+] flag
+set statusline+=%#Cursor#               " colour
+set statusline+=%#CursorLine#     " colour
+set statusline+=\ %t\                   " short file name
+set statusline+=%=                          " right align
+set statusline+=%#CursorLine#   " colour
+set statusline+=\ %Y\                   " file type
+set statusline+=%#CursorIM#     " colour
+set statusline+=\ %3l:%-2c\         " line + column
+set statusline+=%#Cursor#       " colour
+set statusline+=\ %3p%%\                " percentage
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " YouCompleteMe & UltiSnips
