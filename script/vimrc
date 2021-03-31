@@ -59,7 +59,7 @@ call dein#add('ConradIrwin/vim-bracketed-paste')
 call dein#add('wakatime/vim-wakatime')
 
 " material
-call dein#add('kaicataldo/material.vim')
+call dein#add('kaicataldo/material.vim', { 'rev': 'main' })
 
 " vim-bookmarks plugin
 call dein#add('MattesGroeger/vim-bookmarks')
@@ -171,6 +171,7 @@ endif
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " UI setting
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:material_theme_style = 'darker'
 colo material
 syntax enable
 
@@ -193,7 +194,7 @@ if (has('termguicolors'))
 	set termguicolors
 endif
 
-let g:material_theme_style = 'dark'
+let g:Lf_DevIconsFont = "DejaVuSansMono Nerd Font Mono"
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " common setting
@@ -380,7 +381,7 @@ set statusline+=\ %3p%%\                " percentage
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Trigger configuration. Do not use <tab> if you use
 " https://github.com/Valloric/YouCompleteMe.
-let g:UltiSnipsExpandTrigger="<c-j>"
+let g:UltiSnipsExpandTrigger="<c-l>"
 let g:UltiSnipsJumpForwardTrigger="<c-b>"
 let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 
@@ -391,6 +392,22 @@ nnoremap <leader>gf :YcmCompleter GoToDefinition<CR>
 nnoremap <leader>gg :YcmCompleter GoToDefinitionElseDeclaration<CR>
 nnoremap <leader>gr :YcmCompleter GoToReferences<CR>
 nnoremap <leader>gc :pclose<CR>
+
+" 使用YouCompleteMe的文件类型
+let g:ycm_filetype_whitelist = {
+			\ "c":1,
+			\ "cpp":1,
+			\ "objc":1,
+			\ "java":1,
+			\ "python":1,
+			\ "sh":1,
+			\ "zsh":1,
+			\ "zimbu":1,
+			\ "groovy":1,
+			\ "cmake":1,
+			\ "xml":1,
+			\ "json":1,
+			\ }
 
 let g:ycm_confirm_extra_conf=0
 
