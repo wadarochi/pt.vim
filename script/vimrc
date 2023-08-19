@@ -506,12 +506,6 @@ noremap <C-H> :<C-U><C-R>=printf("Leaderf! rg -e %s --heading -C3 ", expand("<cw
 " append the result to previous search results.
 noremap <C-G> :<C-U><C-R>=printf("Leaderf! rg --append -e %s ", expand("<cword>"))<CR>
 
-" search word under cursor literally only in current buffer
-noremap <C-B> :<C-U><C-R>=printf("Leaderf! rg -F --current-buffer -e %s ", expand("<cword>"))<CR>
-
-" search word under cursor literally in all listed buffers
-noremap <C-D> :<C-U><C-R>=printf("Leaderf! rg -F --all-buffers -e %s ", expand("<cword>"))<CR>
-
 " search visually selected text literally, don't quit LeaderF after accepting an entry
 xnoremap gf :<C-U><C-R>=printf("Leaderf! rg -F --stayOpen -e %s ", leaderf#Rg#visual())<CR>
 
