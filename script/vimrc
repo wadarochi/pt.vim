@@ -77,9 +77,6 @@ call dein#add('Yggdroot/indentLine')
 " shows how many times does a search pattern occur in the current buffer
 call dein#add('google/vim-searchindex')
 
-" codequery support
-call dein#add('wadarochi/vim-codequery')
-
 " Gutentags
 call dein#add('ludovicchabant/vim-gutentags')
 
@@ -151,6 +148,8 @@ call dein#add('Yggdroot/LeaderF', {
 			\ 'build': "./install.sh",
 			\ })
 
+call dein#add('tpope/vim-fugitive')
+
 " Vim plugin for Gist
 call dein#add('mattn/webapi-vim')
 call dein#add('mattn/gist-vim')
@@ -171,14 +170,13 @@ endif
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " UI setting
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:material_theme_style = 'darker'
 colo material
 syntax enable
 
 if has("mac") || has("macunix")
 	set guifont=Monaco\ for\ Powerline:h12
 elseif has("win32") || has("win64")
-	set guifont=Monaco\ for\ Powerline:h12:cANSI
+	set guifont=Monaco\ NFM:h12:cANSI
 	set renderoptions=type:directx,renmode:5
 endif
 
@@ -194,6 +192,7 @@ if (has('termguicolors'))
 	set termguicolors
 endif
 
+let g:material_theme_style = 'dark'
 let g:Lf_DevIconsFont = "DejaVuSansM Nerd Font Mono"
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -321,6 +320,11 @@ call denite#custom#var('grep', 'pattern_opt', ['--regexp'])
 call denite#custom#var('grep', 'separator', ['--'])
 call denite#custom#var('grep', 'final_opts', [])
 
+if has("win32")
+	set pythonthreehome=C:\Users\gzzhangbinbin\AppData\Local\Programs\Python\Python311
+	set pythonthreedll=C:\Users\gzzhangbinbin\AppData\Local\Programs\Python\Python311\python311.dll
+endif
+
 " 文本搜索
 nnoremap <space>/ :Leaderf rg --live<cr>
 " Ctrl-P
@@ -340,7 +344,11 @@ let g:echodoc_enable_at_startup = 1
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Rg.vim
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:rg_binary = "/usr/bin/rg"
+if has("win32")
+	let g:rg_binary = "rg.exe"
+else
+	let g:rg_binary = "/usr/bin/rg"
+endif
 let g:rg_highlight = 1
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -350,7 +358,7 @@ map <C-n> :NERDTreeToggle<CR>
 let NERDTreeChDirMode=2
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Airline
+" Status Line
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set laststatus=2
 set statusline=
@@ -393,36 +401,12 @@ nnoremap <leader>gg :YcmCompleter GoToDefinitionElseDeclaration<CR>
 nnoremap <leader>gr :YcmCompleter GoToReferences<CR>
 nnoremap <leader>gc :pclose<CR>
 
-" 使用YouCompleteMe的文件类型
-let g:ycm_filetype_whitelist = {
-			\ "c":1,
-			\ "cpp":1,
-			\ "objc":1,
-			\ "java":1,
-			\ "python":1,
-			\ "sh":1,
-			\ "zsh":1,
-			\ "zimbu":1,
-			\ "groovy":1,
-			\ "cmake":1,
-			\ "xml":1,
-			\ "json":1,
-			\ }
-
 let g:ycm_confirm_extra_conf=0
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " all kinds of tags
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set tags=./.tags;,.tags
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" vim-codequery
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-nnoremap <leader>cm :CodeQueryMenu Denite<CR>
-nnoremap <leader>cd :CodeQuery Definition<CR> 
-nnoremap <leader>cs :CodeQuery Symbol<CR> 
-nnoremap <leader>cq :CodeQuery<CR>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " vim-gutentags
